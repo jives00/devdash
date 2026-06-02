@@ -35,9 +35,9 @@ export const PROJECTS: Project[] = [
 ];
 
 export const INFRASTRUCTURE: InfraService[] = [
-  { name: 'MySQL',      container: 'mysql' },
-  { name: 'Watchtower', container: 'watchtower' },
-  { name: 'Adminer',    container: 'adminer' },
+  { name: 'MySQL',      container: 'shared-mysql-1' },
+  { name: 'Watchtower', container: 'shared-watchtower-1' },
+  { name: 'Adminer',    container: 'shared-adminer-1' },
 ];
 
 export const ONE_SHOT: OneShotService[] = [
