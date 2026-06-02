@@ -1,0 +1,15 @@
+services:
+  devdash:
+    image: ghcr.io/jives00/devdash:latest
+    container_name: devdash
+    ports:
+      - "3005:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    networks:
+      - shared-db
+
+networks:
+  shared-db:
+    external: true
