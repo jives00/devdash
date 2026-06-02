@@ -17,10 +17,7 @@ export function LogViewer({ containerName }: { containerName: string }) {
   const [since, setSince] = useState<Since>('2h');
   const [connected, setConnected] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const pausedRef = useRef(false);
   const esRef = useRef<EventSource | null>(null);
-
-  pausedRef.current = paused;
 
   const connect = useCallback((s: Since) => {
     esRef.current?.close();
@@ -62,12 +59,12 @@ export function LogViewer({ containerName }: { containerName: string }) {
     <div className="flex flex-col h-full gap-3">
       {/* Controls */}
       <div className="flex items-center gap-3 flex-wrap">
-        <div className="flex rounded overflow-hidden border border-gray-700 text-xs">
+        <div className="flex rounded overflow-hidden border border-gray-600 text-sm">
           {(['2h', '6h', '24h'] as Since[]).map(s => (
             <button
               key={s}
               onClick={() => setSince(s)}
-              className={`px-3 py-1.5 ${since === s ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-400 hover:bg-gray-700'}`}
+              className={`px-3 py-1.5 ${since === s ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
             >
               Last {s}
             </button>
@@ -78,25 +75,25 @@ export function LogViewer({ containerName }: { containerName: string }) {
           placeholder="Filter logs..."
           value={filter}
           onChange={e => setFilter(e.target.value)}
-          className="bg-gray-800 border border-gray-700 rounded px-3 py-1.5 text-xs text-gray-300 placeholder-gray-600 w-48 focus:outline-none focus:border-blue-600"
+          className="bg-gray-800 border border-gray-600 rounded px-3 py-1.5 text-sm text-gray-200 placeholder-gray-500 w-48 focus:outline-none focus:border-blue-500"
         />
         <button
           onClick={() => setPaused(v => !v)}
-          className={`text-xs px-3 py-1.5 rounded border ${paused ? 'border-yellow-600 text-yellow-400 bg-yellow-900/20' : 'border-gray-700 text-gray-400 bg-gray-800 hover:bg-gray-700'}`}
+          className={`text-sm px-3 py-1.5 rounded border ${paused ? 'border-yellow-500 text-yellow-300 bg-yellow-900/20' : 'border-gray-600 text-gray-300 bg-gray-800 hover:bg-gray-700'}`}
         >
           {paused ? '▶ Resume' : '⏸ Pause'}
         </button>
-        <div className={`w-2 h-2 rounded-full ${connected ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`} title={connected ? 'Connected' : 'Disconnected'} />
-        <span className="text-xs text-gray-600">{displayed.length} lines</span>
-        {filter && <span className="text-xs text-blue-400">filtered from {lines.length}</span>}
+        <div className={`w-2.5 h-2.5 rounded-full ${connected ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`} title={connected ? 'Connected' : 'Disconnected'} />
+        <span className="text-sm text-gray-400">{displayed.length} lines</span>
+        {filter && <span className="text-sm text-blue-400">filtered from {lines.length}</span>}
       </div>
 
       {/* Log output */}
-      <div className="flex-1 bg-black rounded-lg p-3 overflow-y-auto font-mono text-xs min-h-0">
+      <div className="flex-1 bg-black rounded-lg p-3 overflow-y-auto font-mono text-sm min-h-0">
         {displayed.map((line, i) => (
           <div
             key={i}
-            className={`leading-5 whitespace-pre-wrap break-all ${line.err ? 'text-red-400' : 'text-gray-300'}`}
+            className={`leading-5 whitespace-pre-wrap break-all ${line.err ? 'text-red-400' : 'text-gray-200'}`}
           >
             {line.text}
           </div>

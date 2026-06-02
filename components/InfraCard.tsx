@@ -13,13 +13,13 @@ export function InfraCard({ svc }: { svc: InfraData }) {
     <div className="bg-gray-900 border border-gray-700/50 rounded-lg px-4 py-3 flex items-center justify-between gap-3">
       <div className="flex items-center gap-3">
         <StatusBadge status={(svc.info?.status ?? 'unknown') as any} />
-        <span className="text-gray-300 font-medium text-sm">{svc.name}</span>
-        <span className="text-gray-600 font-mono text-xs">{svc.container}</span>
+        <span className="text-gray-100 font-medium text-sm">{svc.name}</span>
+        <span className="text-gray-400 font-mono text-sm">{svc.container}</span>
       </div>
-      <div className="flex items-center gap-3 text-xs text-gray-500">
+      <div className="flex items-center gap-3 text-sm text-gray-400">
         {svc.info?.uptime && <span>up {svc.info.uptime}</span>}
         {svc.info && svc.info.restartCount > 0 && (
-          <span className="text-yellow-500">{svc.info.restartCount} restarts</span>
+          <span className="text-yellow-400">{svc.info.restartCount} restarts</span>
         )}
       </div>
     </div>
