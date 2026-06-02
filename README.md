@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevDash
 
-## Getting Started
+Personal monitoring dashboard for NAS-hosted Docker services.
 
-First, run the development server:
+## What it does
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Shows container status (running / stopped / restarting) for all projects
+- HTTP health checks with DB connectivity for Pulse and Trakt
+- Live log streaming per container with time range selector and filter
+- Error count badges surfaced from recent logs
+- Infrastructure section (MySQL, Watchtower, Adminer)
+- Auto-refreshes every 10 seconds
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Projects monitored
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Project | Containers | Health check |
+|---|---|---|
+| Trakt | trakt-web, trakt-api | `/health` with DB ping |
+| Pulse | pulse-server, pulse-web | `/api/health` with DB ping |
+| AlpacaBot | alpacabot | container status only |
+| BigEastBot | bigeastbot | container status only |
+| BSNSFWBot | bsnsfwbot | container status only |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+Next.js 14 · TypeScript · Tailwind CSS · dockerode (Docker socket)
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Runs at `http://synology:3005`. Mounts `/var/run/docker.sock` to query the local Docker daemon. Watchtower auto-deploys on push to `main`.
