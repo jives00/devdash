@@ -41,13 +41,13 @@ export default function DashboardPage() {
           </div>
           <div className="flex items-center gap-3">
             {lastUpdated && (
-              <span className="text-xs text-gray-600">
+              <span className="text-sm text-gray-500">
                 Updated {lastUpdated.toLocaleTimeString()}
               </span>
             )}
             <button
               onClick={refresh}
-              className="text-xs bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded px-3 py-1.5 text-gray-400"
+              className="text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded px-3 py-1.5 text-gray-300"
             >
               Refresh
             </button>
@@ -59,7 +59,7 @@ export default function DashboardPage() {
         {data && (
           <>
             <section className="mb-8">
-              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-600 mb-4">Applications</h2>
+              <h2 className="text-base font-bold uppercase tracking-widest text-gray-300 mb-4">Applications</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {data.projects.map((project: any) => (
                   <ProjectCard key={project.name} project={project} />
@@ -68,7 +68,7 @@ export default function DashboardPage() {
             </section>
 
             <section>
-              <h2 className="text-xs font-bold uppercase tracking-widest text-gray-600 mb-4">Infrastructure</h2>
+              <h2 className="text-base font-bold uppercase tracking-widest text-gray-300 mb-4">Infrastructure</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {data.infrastructure.map((svc: any) => (
                   <InfraCard key={svc.name} svc={svc} />

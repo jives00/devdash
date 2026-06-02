@@ -20,13 +20,13 @@ export const PROJECTS: Project[] = [
   {
     name: 'Trakt',
     containers: ['trakt-web', 'trakt-api'],
-    healthUrl: 'http://100.115.171.80:3002/health',
+    healthUrl: 'http://trakt-api:3002/health',
     webUrl: 'http://synology:3001/trakt',
   },
   {
     name: 'Pulse',
     containers: ['pulse-server', 'pulse-web'],
-    healthUrl: 'http://100.115.171.80:3000/api/health',
+    healthUrl: 'http://pulse-server:3000/api/health',
     webUrl: 'http://synology:3004/pulse/',
   },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },

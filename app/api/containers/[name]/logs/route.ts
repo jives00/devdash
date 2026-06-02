@@ -2,7 +2,7 @@ import { getDocker, stripDockerHeader } from '@/lib/docker';
 
 export const dynamic = 'force-dynamic';
 
-const SINCE_MAP: Record<string, string> = { '2h': '2h', '6h': '6h', '24h': '24h' };
+const SINCE_SECONDS: Record<string, number> = { '2h': 7200, '6h': 21600, '24h': 86400 };
 
 export async function GET(
   req: Request,
@@ -10,7 +10,8 @@ export async function GET(
 ) {
   const { name } = params;
   const url = new URL(req.url);
-  const since = SINCE_MAP[url.searchParams.get('since') ?? '2h'] ?? '2h';
+  const sinceKey = url.searchParams.get('since') ?? '2h';
+  const since = Math.floor(Date.now() / 1000) - (SINCE_SECONDS[sinceKey] ?? SINCE_SECONDS['2h']);
 
   const docker = getDocker();
   const containers = await docker.listContainers({ all: true, filters: JSON.stringify({ name: [name] }) });
