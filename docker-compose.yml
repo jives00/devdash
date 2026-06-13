@@ -6,6 +6,7 @@ services:
       - "3005:3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /volume2/docker/shared/backups:/backups:ro
     restart: unless-stopped
     networks:
       - shared-db

@@ -62,7 +62,14 @@ export async function getRecentErrors(name: string): Promise<{ count: number; la
     if (!match) return { count: 0, lastError: null };
 
     const container = docker.getContainer(match.Id);
-    const stream = await container.logs({ stdout: true, stderr: true, tail: 200, follow: false }) as Buffer;
+    const inspect = await container.inspect();
+    const sixHoursAgo = Math.floor((Date.now() - 6 * 60 * 60 * 1000) / 1000);
+    const startedAt = inspect.State.StartedAt
+      ? Math.floor(new Date(inspect.State.StartedAt).getTime() / 1000)
+      : 0;
+    // Use the more recent of the two — errors before the current session or older than 6h aren't actionable
+    const since = Math.max(startedAt, sixHoursAgo);
+    const stream = await container.logs({ stdout: true, stderr: true, tail: 200, follow: false, since }) as Buffer;
     const raw = stream.toString('utf8');
     const lines = raw.split('\n').map(l => stripDockerHeader(l)).filter(Boolean);
 

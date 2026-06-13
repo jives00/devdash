@@ -3,6 +3,14 @@
 import { useEffect, useState, useCallback } from 'react';
 import { ProjectCard } from '@/components/ProjectCard';
 import { InfraCard } from '@/components/InfraCard';
+import { BackupStatusCard } from '@/components/BackupStatusCard';
+
+interface BackupStatus {
+  timestamp: string;
+  success: boolean;
+  sizeMb: number | null;
+  error: string | null;
+}
 
 interface DashboardData {
   projects: any[];
@@ -11,18 +19,20 @@ interface DashboardData {
 
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
+  const [backupStatus, setBackupStatus] = useState<BackupStatus | null | undefined>(undefined);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const refresh = useCallback(() => {
-    fetch('/api/containers')
-      .then(r => r.json())
-      .then(d => {
-        setData(d);
-        setLastUpdated(new Date());
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    Promise.all([
+      fetch('/api/containers').then(r => r.json()),
+      fetch('/api/backup-status').then(r => r.json()),
+    ]).then(([containers, backup]) => {
+      setData(containers);
+      setBackupStatus(backup);
+      setLastUpdated(new Date());
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, []);
 
   useEffect(() => {
@@ -67,12 +77,19 @@ export default function DashboardPage() {
               </div>
             </section>
 
-            <section>
+            <section className="mb-8">
               <h2 className="text-base font-bold uppercase tracking-widest text-gray-300 mb-4">Infrastructure</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 {data.infrastructure.map((svc: any) => (
                   <InfraCard key={svc.name} svc={svc} />
                 ))}
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-base font-bold uppercase tracking-widest text-gray-300 mb-4">Backups</h2>
+              <div className="flex flex-col gap-3">
+                <BackupStatusCard status={backupStatus ?? null} />
               </div>
             </section>
           </>
