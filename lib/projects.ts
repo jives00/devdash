@@ -18,6 +18,12 @@ export interface OneShotService {
 
 export const PROJECTS: Project[] = [
   {
+    name: 'Quest',
+    containers: ['quest-web', 'quest-api'],
+    healthUrl: 'http://quest-api:3007/health',
+    webUrl: 'http://synology:3006',
+  },
+  {
     name: 'Trakt',
     containers: ['trakt-web', 'trakt-api'],
     healthUrl: 'http://trakt-api:3002/health',
