@@ -35,6 +35,12 @@ export const PROJECTS: Project[] = [
     healthUrl: 'http://pulse-server:3000/api/health',
     webUrl: 'http://synology:3004/pulse/',
   },
+  {
+    name: 'Travel',
+    containers: ['travel-web', 'travel-api'],
+    healthUrl: 'http://travel-api:3008/health',
+    webUrl: 'http://synology:3003/travel',
+  },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
   { name: 'BigEastBot', containers: ['bigeastbot'],  healthUrl: null, webUrl: null },
   { name: 'BSNSFWBot',  containers: ['bsnsfwbot'],   healthUrl: null, webUrl: null },

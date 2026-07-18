@@ -15,8 +15,10 @@ Personal monitoring dashboard for NAS-hosted Docker services.
 
 | Project | Containers | Health check |
 |---|---|---|
+| Quest | quest-web, quest-api | `/health` with DB ping |
 | Trakt | trakt-web, trakt-api | `/health` with DB ping |
 | Pulse | pulse-server, pulse-web | `/api/health` with DB ping |
+| Travel | travel-web, travel-api | `/health` |
 | AlpacaBot | alpacabot | container status only |
 | BigEastBot | bigeastbot | container status only |
 | BSNSFWBot | bsnsfwbot | container status only |
