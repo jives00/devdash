@@ -41,6 +41,12 @@ export const PROJECTS: Project[] = [
     healthUrl: 'http://travel-api:3008/health',
     webUrl: 'http://synology:3003/travel',
   },
+  {
+    name: 'Vault',
+    containers: ['vault-web', 'vault-api'],
+    healthUrl: 'http://vault-api:3009/health',
+    webUrl: 'http://synology:3010/vault',
+  },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
   { name: 'BigEastBot', containers: ['bigeastbot'],  healthUrl: null, webUrl: null },
   { name: 'BSNSFWBot',  containers: ['bsnsfwbot'],   healthUrl: null, webUrl: null },
