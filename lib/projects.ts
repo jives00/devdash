@@ -47,6 +47,13 @@ export const PROJECTS: Project[] = [
     healthUrl: 'http://vault-api:3009/health',
     webUrl: 'http://synology:3010/vault',
   },
+  {
+    name: 'Portal',
+    containers: ['portal'],
+    // Portal isn't on shared-db, so reach it through the NAS's LAN address instead of its container name.
+    healthUrl: 'http://192.168.0.105:3012/health',
+    webUrl: 'http://synology:3012',
+  },
   { name: 'NodeCast TV', containers: ['nodecast-tv'], healthUrl: null, webUrl: 'http://synology:3011' },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
   { name: 'BigEastBot', containers: ['bigeastbot'],  healthUrl: null, webUrl: null },
