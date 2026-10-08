@@ -47,6 +47,7 @@ export const PROJECTS: Project[] = [
     healthUrl: 'http://vault-api:3009/health',
     webUrl: 'http://synology:3010/vault',
   },
+  { name: 'NodeCast TV', containers: ['nodecast-tv'], healthUrl: null, webUrl: 'http://synology:3011' },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
   { name: 'BigEastBot', containers: ['bigeastbot'],  healthUrl: null, webUrl: null },
   { name: 'BSNSFWBot',  containers: ['bsnsfwbot'],   healthUrl: null, webUrl: null },

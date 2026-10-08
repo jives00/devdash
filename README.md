@@ -20,6 +20,7 @@ Personal monitoring dashboard for NAS-hosted Docker services.
 | Pulse | pulse-server, pulse-web | `/api/health` with DB ping |
 | Travel | travel-web, travel-api | `/health` |
 | Vault | vault-web, vault-api | `/health` |
+| NodeCast TV | nodecast-tv | container status only (third-party image, not on `shared-db`) |
 | AlpacaBot | alpacabot | container status only |
 | BigEastBot | bigeastbot | container status only |
 | BSNSFWBot | bsnsfwbot | container status only |
