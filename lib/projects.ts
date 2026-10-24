@@ -61,6 +61,13 @@ export const PROJECTS: Project[] = [
     healthUrl: 'http://signal:3013/health',
     webUrl: 'http://synology:3013',
   },
+  {
+    name: 'Sentry',
+    containers: ['sentry', 'sentry-ring', 'sentry-mqtt'],
+    // Own compose network (with ring-mqtt and mosquitto), not shared-db; reach it via the LAN IP.
+    healthUrl: 'http://192.168.0.105:3014/health',
+    webUrl: 'http://synology:3014',
+  },
   { name: 'NodeCast TV', containers: ['nodecast-tv'], healthUrl: null, webUrl: 'http://synology:3011' },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
   { name: 'BSNSFWBot',  containers: ['bsnsfwbot'],   healthUrl: null, webUrl: null },

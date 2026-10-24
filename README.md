@@ -22,6 +22,7 @@ Personal monitoring dashboard for NAS-hosted Docker services.
 | Vault | vault-web, vault-api | `/health` |
 | Portal | portal | `/health` via the NAS LAN IP (not on `shared-db`) |
 | Signal | signal | `/health` with DB ping (503 while the database is unreachable) |
+| Sentry | sentry, sentry-ring, sentry-mqtt | `/health` via the NAS LAN IP (not on `shared-db`) |
 | NodeCast TV | nodecast-tv | container status only (third-party image, not on `shared-db`) |
 | AlpacaBot | alpacabot | container status only |
 | BSNSFWBot | bsnsfwbot | container status only |
