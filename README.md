@@ -24,7 +24,6 @@ Personal monitoring dashboard for NAS-hosted Docker services.
 | Signal | signal | `/health` with DB ping (503 while the database is unreachable) |
 | NodeCast TV | nodecast-tv | container status only (third-party image, not on `shared-db`) |
 | AlpacaBot | alpacabot | container status only |
-| BigEastBot | bigeastbot | container status only |
 | BSNSFWBot | bsnsfwbot | container status only |
 
 ## Stack
