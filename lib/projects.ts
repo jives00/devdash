@@ -54,6 +54,13 @@ export const PROJECTS: Project[] = [
     healthUrl: 'http://192.168.0.105:3012/health',
     webUrl: 'http://synology:3012',
   },
+  {
+    name: 'Signal',
+    containers: ['signal'],
+    // The NAS companion and web admin; 503 while its database is unreachable.
+    healthUrl: 'http://signal:3013/health',
+    webUrl: 'http://synology:3013',
+  },
   { name: 'NodeCast TV', containers: ['nodecast-tv'], healthUrl: null, webUrl: 'http://synology:3011' },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
   { name: 'BigEastBot', containers: ['bigeastbot'],  healthUrl: null, webUrl: null },
