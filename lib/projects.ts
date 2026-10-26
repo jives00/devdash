@@ -49,7 +49,8 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Portal',
-    containers: ['portal'],
+    // Includes the camera recorder (formerly Sentry): ring-mqtt and mosquitto run in Portal's compose.
+    containers: ['portal', 'portal-ring', 'portal-mqtt'],
     // Portal isn't on shared-db, so reach it through the NAS's LAN address instead of its container name.
     healthUrl: 'http://192.168.0.105:3012/health',
     webUrl: 'http://synology:3012',
@@ -60,13 +61,6 @@ export const PROJECTS: Project[] = [
     // The NAS companion and web admin; 503 while its database is unreachable.
     healthUrl: 'http://signal:3013/health',
     webUrl: 'http://synology:3013',
-  },
-  {
-    name: 'Sentry',
-    containers: ['sentry', 'sentry-ring', 'sentry-mqtt'],
-    // Own compose network (with ring-mqtt and mosquitto), not shared-db; reach it via the LAN IP.
-    healthUrl: 'http://192.168.0.105:3014/health',
-    webUrl: 'http://synology:3014',
   },
   { name: 'NodeCast TV', containers: ['nodecast-tv'], healthUrl: null, webUrl: 'http://synology:3011' },
   { name: 'AlpacaBot',  containers: ['alpacabot'],  healthUrl: null, webUrl: null },
