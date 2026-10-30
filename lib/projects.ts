@@ -48,6 +48,12 @@ export const PROJECTS: Project[] = [
     webUrl: 'http://synology:3010/vault',
   },
   {
+    name: 'Scout',
+    containers: ['scout-web', 'scout-api'],
+    healthUrl: 'http://scout-api:3016/health',
+    webUrl: 'http://synology:3015',
+  },
+  {
     name: 'Portal',
     // Includes the camera recorder (formerly Sentry): ring-mqtt and mosquitto run in Portal's compose.
     containers: ['portal', 'portal-ring', 'portal-mqtt'],
